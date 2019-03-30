@@ -28,4 +28,6 @@ public class LeetCode21 {
             curr.next=l2;
         return nhead.next;
     }
+
+
 }
