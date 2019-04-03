@@ -19,9 +19,7 @@ public class LRUCache {
             this.key=key;
             this.value=value;
         }
-
     }
-
     public LRUCache(int capacity) {
         this.capacity=capacity;
         head=new Node(0,0);
@@ -43,7 +41,6 @@ public class LRUCache {
 
     public void put(int key, int value) {
         Node node=map.get(key);
-
         if(node!=null){    //如果node不为空,就要更新这个值，并处理这个节点的前后指向，再把它放到tail处
             node.value=value;
             map.put(key,node);
