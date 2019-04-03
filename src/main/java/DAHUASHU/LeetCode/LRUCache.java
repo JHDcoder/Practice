@@ -50,6 +50,7 @@ public class LRUCache {
             node.pre.next=node.next;
             node.next.pre=node.pre;
             appendAtTail(node);
+            return;
         }
 
         if(capacity==map.size()){  //如果此时缓存满了，就要去掉最老的节点，调整head指向
