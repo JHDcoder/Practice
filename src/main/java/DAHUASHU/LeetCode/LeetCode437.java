@@ -1,8 +1,5 @@
 package DAHUASHU.LeetCode;
 
-
-
-
 public class LeetCode437 {
     public int pathSum(TreeNode root, int sum) {
         if(root==null) return 0;
