@@ -21,7 +21,6 @@ public class CyclicBarrierTest {
             }
         }).start();
 
-
         try {
             cyclicBarrier.await();
         } catch (InterruptedException e) {
