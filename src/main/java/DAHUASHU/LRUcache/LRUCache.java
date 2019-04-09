@@ -1,4 +1,4 @@
-package DAHUASHU.LeetCode;
+package DAHUASHU.LRUcache;
 
 import java.util.HashMap;
 import java.util.Map;
