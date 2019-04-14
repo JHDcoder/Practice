@@ -1,4 +1,3 @@
-
 //阿里在线测试
 public class Test1 {
     public static void main(String[] args) {
@@ -17,7 +16,6 @@ class thread implements Runnable{
     public thread(String name){
         this.name=name;
     }
-
 
     @Override
     public void run() {

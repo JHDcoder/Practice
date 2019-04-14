@@ -2,12 +2,16 @@ package DAHUASHU.List.imple;
 
 import DAHUASHU.List.List;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 //没有检验过是否每个函写的正确
 public class SingleLinkList implements List {
     private Node head;
     private int size;
+
+
     @Override
     public void init() {
         this.head=null;
