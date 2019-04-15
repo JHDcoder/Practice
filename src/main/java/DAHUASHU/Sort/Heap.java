@@ -5,6 +5,13 @@ public class Heap {
     private int n;//堆可以存储的最大数据个数
     private int count;//堆中已存储的数据个数
 
+    /*
+    堆中比较重要的两个操作是插入一个数据和删除堆顶元素。这两个操作都要用到堆化。插
+    入一个数据的时候，我们把新插入的数据放到数组的最后，然后从下往上堆化；删除堆顶
+    数据的时候，我们把数组中的最后一个元素放到堆顶，然后从上往下堆化。这两个操作时
+    间复杂度都是 。 O(log n
+     */
+
     public Heap(int capacity){
         a=new int[capacity+1];
         n=capacity;
@@ -28,7 +35,18 @@ public class Heap {
         --count;
         heapify(a,count,1);
     }
+    //堆排序
+    public void heapsort(int [] a,int n){
+        buildHeap(a,n);
+        int k=n;
+        while(k>1){
+            swap(a,1,k);
+            --k;
+            heapify(a,k,1);
+        }
+    }
 
+    //建堆的时间复杂度为O（n）
     public  void buildHeap(int [] a,int n){
         for(int i=n/2;i>=1;i--){
             heapify(a,n,i);
@@ -46,7 +64,6 @@ public class Heap {
         }
 
     }
-
 
     private static void swap(int [] a,int m,int n){
         int temp=a[m];
