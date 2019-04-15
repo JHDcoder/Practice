@@ -1,5 +1,8 @@
 package DAHUASHU.Sort;
-
+/*
+二分查找只能用在插入、删除操作不频繁，一次排序多次查找的场景中。针对动态
+变化的数据集合，二分查找将不再适用。
+ */
 public class binarysearch {
     //二分查找的非递归写法
     public int bsearch(int [] a,int n,int value){
