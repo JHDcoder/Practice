@@ -1,10 +1,10 @@
 package DAHUASHU.Graph;
 
-public class Graphjiebiao {
+class Graphjiebiao {
     public int vertexNum;
     public char vertex;
     public Graphjiebiao next;
-    public boolean visited[]=null;
+    private boolean visited[]=null;
 
     public Graphjiebiao(char vertex){
         this.vertex=vertex;
