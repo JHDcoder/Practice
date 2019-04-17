@@ -1,10 +1,10 @@
 package DAHUASHU.Graph;
 
 public class Graphjiebiao {
-    public static int vertexNum;
+    public  static  int vertexNum;
     public char vertex;
     public Graphjiebiao next;
-    public static boolean visited[]=null;
+    public static boolean visited []=null;
 
     public Graphjiebiao(char vertex){
         this.vertex=vertex;
@@ -34,7 +34,7 @@ public class Graphjiebiao {
     }
 
     // 得到图中顶点为vertex的索引
-    public int indexof(Graphjiebiao[] g,char vertex){
+    public static int indexof(Graphjiebiao[] g,char vertex){
         for(int i=0;i<vertexNum;i++){
             if(g[i].vertex==vertex){
                 return i;
