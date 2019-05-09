@@ -1,6 +1,11 @@
 package DAHUASHU.Sort;
+
+import java.util.HashMap;
+import java.util.Map;
+
 //主要有插入和删除堆顶元素
 public class Heap {
+
     private int [] a;//数组，下标从1开始存储
     private int n;//堆可以存储的最大数据个数
     private int count;//堆中已存储的数据个数
