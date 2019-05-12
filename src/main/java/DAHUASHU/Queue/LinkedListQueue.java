@@ -79,7 +79,7 @@ public class LinkedListQueue<E> implements Queue<E> {
             cur=cur.next;
         }
 
-        res.append("NULL");
+        res.append("NULL tail");
         return res.toString();
     }
 }
