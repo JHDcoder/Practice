@@ -75,4 +75,28 @@ public class MaxHeap<E extends Comparable<E>> {
         }
     }
 
+    /*
+    replace 取出最大元素后，放入一个新元素
+    实现：可以先extractMax,在add，两次O（logN）的操作
+    实现：可以直接将堆顶元素替换以后siftDown，一次O（logN）
+     */
+    public E replace(E e){
+        E ret=findMax();
+
+        data.set(0,e);
+        siftDown(0);
+        return ret;
+    }
+
+    /*
+    heapify将任意数组整理成堆的形状
+     */
+
+    public MaxHeap(E [] arr){
+        data=new Array<>(arr);
+        for(int i=parent(arr.length-1);i>=0;i--)
+            siftDown(i);
+    }
+
+
 }
