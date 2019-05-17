@@ -26,6 +26,24 @@ public class AVLTree<K extends Comparable<K>, V> {
         size = 0;
     }
 
+    public boolean isBST(){
+        ArrayList<K> keys=new ArrayList<>();
+        inOrder(root,keys);
+        for(int i=1;i<keys.size();i++)
+            if(keys.get(i-1).compareTo(keys.get(i))>0)
+                return false;
+        return true;
+
+    }
+
+    private void inOrder(Node node,ArrayList<K> keys){
+        if(node==null)
+            return;
+        inOrder(node.left,keys);
+        keys.add(node.key);
+        inOrder(node.right,keys);
+    }
+
     public int getSize(){
         return size;
     }
