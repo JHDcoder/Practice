@@ -1,11 +1,18 @@
 package DAHUASHU.SegmentTree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SegmentTree<E> {
+
+
 
     private E [] tree;
     private E [] data;
     private Merger<E> merger;
     public SegmentTree(E [] arr,Merger<E> merger){
+        Map<Integer,Integer> map=new HashMap<>();
+
         this.merger=merger;
         data=(E [])new Object[arr.length];
         for(int i=0;i<arr.length;i++)
@@ -74,10 +81,35 @@ public class SegmentTree<E> {
         E leftresult=query(leftTreeIndex,l,mid,querL,mid);
         E rightresult=query(rightTreeIndex,mid+1,r,mid+1,queryR);
         return merger.merge(leftresult,rightresult);
+    }
 
+    public void set(int index,E e){
+        if(index<0||index>=data.length)
+            throw new IllegalArgumentException("index");
+        data[index]=e;
+        set(0,0,data.length-1,index,e);
+    }
 
+    private void set(int treeIndex,int l,int r,int index,E e){
+        if(l==r){
+            tree[treeIndex]=e;
+            return;
+        }
+
+        int mid=l+(r-l)/2;
+        int leftTreeIndex=leftChild(treeIndex);
+        int rightTreeIndex=rightChild(treeIndex);
+
+        if(index>=mid+1)
+            set(rightTreeIndex,mid+1,r,index,e);
+        else
+            set(leftTreeIndex,l,mid,index,e);
+
+        tree[treeIndex]=merger.merge(tree[leftTreeIndex],tree[rightTreeIndex]);
 
     }
+
+
 
     public String toString(){
         StringBuilder res=new StringBuilder();
