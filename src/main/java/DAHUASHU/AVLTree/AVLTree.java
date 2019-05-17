@@ -59,6 +59,19 @@ public class AVLTree<K extends Comparable<K>, V> {
         return node.height;
     }
 
+    public boolean isBalanced(){
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node node){
+        if(node==null)
+            return true;
+        int balanceFactor=getBalanceFactor(node);
+        if(Math.abs(balanceFactor)>1)
+            return false;
+        return isBalanced(node.left) && isBalanced(node.right);
+    }
+
     // 获得节点node的平衡因子
     private int getBalanceFactor(Node node){
         if(node == null)
@@ -95,7 +108,54 @@ public class AVLTree<K extends Comparable<K>, V> {
         if(Math.abs(balanceFactor) > 1)
             System.out.println("unbalanced : " + balanceFactor);
 
+        //维护平衡性LL
+        if(balanceFactor>1&&getBalanceFactor(node.left)>=0)
+            return rightRotate(node);//右旋
+        //RR
+        if(balanceFactor<-1&&getBalanceFactor(node.right)<=0)
+            return leftRotate(node);//右旋
+
+        //LR
+        if(balanceFactor>1&&getBalanceFactor(node.left)<0){
+            node.left=leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        //RL
+        if(balanceFactor<-1&&getBalanceFactor(node.right)>0){
+            node.right=rightRotate(node.right);
+            return leftRotate(node);
+        }
+
         return node;
+    }
+
+    private Node leftRotate(Node y){
+        Node x=y.right;
+        Node T2=x.left;
+
+        x.left=y;
+        y.right=T2;
+
+        x.left=y;
+        y.right=T2;
+
+        y.height=Math.max(getHeight(y.left),getHeight(y.right))+1;
+        x.height=Math.max(getHeight(x.left),getHeight(x.right))+1;
+        return x;
+    }
+
+    private Node rightRotate(Node y){
+        Node x=y.left;
+        Node T3=x.right;
+
+        x.right=y;
+        y.left=T3;
+        //更新
+        y.height=Math.max(getHeight(y.left),getHeight(y.right))+1;
+        x.height=Math.max(getHeight(x.left),getHeight(x.right))+1;
+        return x;
+
     }
 
     // 返回以node为根节点的二分搜索树中，key所在的节点
