@@ -63,6 +63,21 @@ public class RBTree<K extends Comparable<K>,V> {
         return x;
     }
 
+    private Node rightRotate(Node node){
+        Node x=node.left;
+
+        node.left=x.right;
+        x.right=node;
+        x.color=node.color;
+        node.color=RED;
+    }
+    //颜色反转
+    private void flipColors(Node node){
+        node.color=RED;
+        node.left.color=BLACK;
+        node.right.color=BLACK;
+    }
+
     // 向红黑树中添加新的元素(key, value)
     public void add(K key, V value){
         root = add(root, key, value);
