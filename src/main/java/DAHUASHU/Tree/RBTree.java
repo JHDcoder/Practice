@@ -70,6 +70,7 @@ public class RBTree<K extends Comparable<K>,V> {
         x.right=node;
         x.color=node.color;
         node.color=RED;
+        return x;
     }
     //颜色反转
     private void flipColors(Node node){
@@ -99,6 +100,16 @@ public class RBTree<K extends Comparable<K>,V> {
             node.right = add(node.right, key, value);
         else // key.compareTo(node.key) == 0
             node.value = value;
+
+        //红黑树颜色维护
+        if(isRed(node.right)&&!isRed(node.left))
+            node=leftRotate(node);
+
+        if(isRed(node.left)&&isRed(node.left.left))
+            node=rightRotate(node);
+
+        if(isRed(node.left)&&isRed(node.right))
+            flipColors(node);
 
         return node;
     }
